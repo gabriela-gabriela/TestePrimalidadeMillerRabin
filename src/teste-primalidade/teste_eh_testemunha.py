@@ -1,5 +1,7 @@
+from codigo_modular_pow import modular_pow 
+
 def eh_testemunha(a, n, s, d):
-    x = pow(a, d, n)
+    x = modular_pow(a, d, n)
 
     if x == 1 or x == n-1:
         return False
