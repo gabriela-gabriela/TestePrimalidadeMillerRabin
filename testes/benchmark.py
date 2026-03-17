@@ -36,12 +36,13 @@ def gerar_int_que_roda_miller_rabin(bits):
             return n
 
 def benchmark(lista_bits, repeticoes=10, k=40):
+    print(f"Iniciando testes para {repeticoes} caso(s) por quantidade de bits (é normal que o processo demore para muitos bits).")
     medias_preteste = []
     medias_miller_rabin = []
     medias_total = []
 
     for b in lista_bits:
-        print(f"testando para {b} bits")
+        print(f"testando para {b} bits...")
         soma_pre = 0
         soma_mr = 0
         soma_total = 0
@@ -118,4 +119,7 @@ def main(repeticoes=3, k=40):
 
 
 if __name__ == "__main__":
-    main(repeticoes=20, k=40)
+    repeticoes = int(sys.argv[1]) if len(sys.argv) > 1 else 3
+    main(repeticoes, k=40)
+
+
