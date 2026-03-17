@@ -7,8 +7,7 @@ def eh_testemunha(a, n, s, d):
         return False
     
     for _ in range(s-1):
-        x = pow(x, 2, n)
-        
+        x = pow(x, 2, n) 
         if x == n-1:
             return False
     

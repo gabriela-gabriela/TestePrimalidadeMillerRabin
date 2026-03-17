@@ -10,16 +10,16 @@ from teste_primalidade.teste_eh_testemunha import eh_testemunha
 def miller_rabin(n, k=40):
    preteste = pre_teste(n)
    if preteste == 2:
-      return "O número é primo - Nível de certeza: 100%"
+      return f"O número {n} é primo - Nível de certeza: 100%"
    if preteste == 1:
-      return "O número é composto - verificado no pre-teste"
+      return f"O número {n} é composto - verificado no pré-teste"
    
    s, d = decomposicao(n)
 
    for _ in (range(k)):
       a = random.randint(2, n - 2)
       if eh_testemunha(a, n, s, d):
-         return "O número é composto - verificado pelo teste de miller rabin"
+         return f"O número {n} é composto - verificado pelo teste de Miller-Rabin"
 
    prob_acerto = (1 - ((1/4) ** k)) * 100
-   return f"O número é provavelmente primo - Nível de certeza: {prob_acerto:.10f}%"
+   return f"O número {n} é provavelmente primo - Nível de certeza: {prob_acerto:.10f}%"
