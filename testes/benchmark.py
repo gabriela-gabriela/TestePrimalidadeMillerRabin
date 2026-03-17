@@ -4,7 +4,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(BASE_DIR, "src"))
 
-
 from teste_primalidade.teste_primalidade_miller_rabin import miller_rabin
 import time as temporizador
 from teste_primalidade.preteste import pre_teste
@@ -27,6 +26,7 @@ def medir_tempo_miller_rabin(numero, k):
 
 def gerar_bigint(bits):
     return randomizador.getrandbits(bits)
+
 
 def gerar_int_que_roda_miller_rabin(bits):
     primos_pequenos = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97}

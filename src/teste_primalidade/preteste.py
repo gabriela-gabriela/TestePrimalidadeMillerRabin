@@ -11,5 +11,4 @@ def pre_teste(numero):
     for primo in primos_pequenos:
         if numero % primo == 0:
             return 1
-  
     return 3

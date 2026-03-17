@@ -9,7 +9,6 @@ def modular_pow(base, expoente, mod):
             resultado = (resultado * base) % mod 
 
         expoente = expoente // 2
-
         base = (base * base) % mod 
 
     return resultado
