@@ -1,4 +1,10 @@
-import miller_rabin
+import sys
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(BASE_DIR, "src"))
+
+from teste_primalidade.teste_primalidade_miller_rabin import miller_rabin
 
 def teste_primos_conhecidos():
     primos_conhecidos = [7919, 104729, 1299709, 15485863, 32452843]
@@ -12,7 +18,7 @@ def teste_primos_conhecidos():
     for p in primos_conhecidos:
         resultado = miller_rabin(p, k=1)
         print(f"{p:<15} | {resultado:<30}")
-        if resultado == "Composto":
+        if "composto" in resultado:
             erros_primos += 1
             
     taxa_erro_primos = (erros_primos / len(primos_conhecidos)) * 100
@@ -39,7 +45,7 @@ def teste_numeros_carmichael():
                 total_testes += 1
                 resultado = miller_rabin(num, k)
 
-                if resultado == "Provavelmente primo":
+                if "primo" in resultado:
                     falsos_positivos += 1
         
         taxa_erro = (falsos_positivos / total_testes) * 100
