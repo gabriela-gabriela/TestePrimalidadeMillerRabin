@@ -1,4 +1,4 @@
-from codigo_modular_pow import modular_pow 
+from teste_primalidade.codigo_modular_pow import modular_pow 
 
 def eh_testemunha(a, n, s, d):
     x = modular_pow(a, d, n)
