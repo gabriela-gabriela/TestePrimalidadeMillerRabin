@@ -1,10 +1,13 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
 import random
 from teste_primalidade.preteste import pre_teste
 from teste_primalidade.decomposicao import decomposicao
 from teste_primalidade.teste_eh_testemunha import eh_testemunha
 
-#ver se acha um jeito de encontrar um melhor k de vezes pra testar
-def miller_rabin(n, k):
+def miller_rabin(n, k=40):
    preteste = pre_teste(n)
    if preteste == 2:
       return "O número é primo - Nível de certeza: 100%"

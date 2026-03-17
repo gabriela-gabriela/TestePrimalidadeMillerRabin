@@ -27,8 +27,7 @@ def main():
       resultado = miller_rabin(n, k)
 	
    else:
-      # ainda tenho q fazer esse
-      resultado = miller_rabin_sem_k(n)
+      resultado = miller_rabin(n)
    
    print(resultado)
 

@@ -15,7 +15,7 @@ def stress_test_miller_rabin(n_testes=200):
     erros = []
 
     for i in range(n_testes):
-        bits = random.choice([8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]) #tamanhos de bits
+        bits = random.choice([8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768]) #tamanhos de bits
         n = random.getrandbits(bits) | 1
 
         esperado = sympy.isprime(n)
@@ -45,4 +45,4 @@ def stress_test_miller_rabin(n_testes=200):
         print(f"{len(erros)} erro(s) encontrado(s).")
 
 
-stress_test_miller_rabin()
+stress_test_miller_rabin(100)

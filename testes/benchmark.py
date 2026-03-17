@@ -45,6 +45,7 @@ def benchmark(lista_bits, repeticoes=10, k=40):
         soma_pre = 0
         soma_mr = 0
         soma_total = 0
+        entrou_mr = 0
 
         for _ in range(repeticoes):
             numero = gerar_int_que_roda_miller_rabin(b)
@@ -53,14 +54,17 @@ def benchmark(lista_bits, repeticoes=10, k=40):
             resultado_pre, tempo_pre = medir_tempo_preteste(numero)
 
             # Miller-Rabin
-            resultado_mr, tempo_mr = medir_tempo_miller_rabin(numero, k)
+            resultado_mr, tempo_mr = medir_tempo_miller_rabin(numero, k) if resultado_pre == 3 else (None, 0)
  
+            if resultado_pre == 3:
+                entrou_mr += 1
+            
             soma_mr += tempo_mr
             soma_pre += tempo_pre
-            soma_total += tempo_pre + tempo_mr
+            soma_total += tempo_mr + tempo_pre
 
         medias_preteste.append(soma_pre / repeticoes)
-        medias_miller_rabin.append(soma_mr / repeticoes)
+        medias_miller_rabin.append(soma_mr / entrou_mr if entrou_mr > 0 else 0)
         medias_total.append(soma_total / repeticoes)
 
     return medias_preteste, medias_miller_rabin, medias_total
@@ -75,7 +79,7 @@ def gerar_grafico(bits, tempos_preteste, tempos_miller_rabin, tempos_totalizado,
     mpl.figure(figsize=(8,5))
 
     mpl.plot(bits, tempos_preteste, marker="o", label="Pré-teste")
-    mpl.plot(bits, tempos_totalizado, marker="o", label="Tempo total")
+    mpl.plot(bits, tempos_totalizado, marker="^", label="Tempo total")
     mpl.plot(bits, tempos_miller_rabin, marker="o", label="Miller-Rabin")
 
     mpl.xlabel("Tamanho do número (bits)")
@@ -102,7 +106,7 @@ def mostrar_tabela(bits, tempos_preteste, tempos_miller_rabin, tempos_total):
         print(f"{bits[i]:<10}{tempos_preteste[i]:<20.8f}{tempos_miller_rabin[i]:<20.8f}{tempos_total[i]:<15.8f}")
 
 
-def main(repeticoes=10, k=40):
+def main(repeticoes=3, k=40):
     bits = [32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]
     tempos_preteste, tempos_miller_rabin, tempos_total = benchmark(bits, repeticoes, k)
 
@@ -114,4 +118,4 @@ def main(repeticoes=10, k=40):
 
 
 if __name__ == "__main__":
-    main(repeticoes=10, k=40)
+    main(repeticoes=20, k=40)
